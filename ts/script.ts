@@ -13,9 +13,8 @@ else {
   historyObject = JSON.parse(historyL);
 }
 
-if (localStorage.getItem('histroy') != null) {
-  each();
-}
+localStorage.getItem('histroy') != null ? each() : null;
+
 for (let i = 0; i < historyObject.length; i++) {
   checkInfor(i + 1);
 }
@@ -40,16 +39,12 @@ function each(): void {
       </div>
     `;
 
-    if (exercise.star) {
-      onStarsMouseover('star', i);
-    }
+    exercise.star ? onStarsMouseover('star', i) : null;
   });
 }
 
 exerciseId.addEventListener('keypress', (event) => {
-  if (event.key === 'Enter') {
-    exerciseFunctin();
-  }
+  event.key === 'Enter' ? exerciseFunctin() : null;
 });
 
 function exerciseFunctin(): void {
@@ -67,8 +62,8 @@ function exerciseFunctin(): void {
   let day: number | string = new Date().getDate();
   let month: number | string = new Date().getMonth() + 1;
 
-  if (day.toString().length === 1) day = `0${day}`;
-  if (month.toString().length === 1) month = `0${month}`;
+  day.toString().length === 1 ? day = `0${day}` : null;
+  month.toString().length === 1 ? month = `0${month}` : null;
 
   historyObject.unshift({
     exercise,
@@ -80,9 +75,7 @@ function exerciseFunctin(): void {
     }
   },);
 
-  if (historyObject.length === 7) {
-    historyObject.pop();
-  }
+  historyObject.length === 7 ? historyObject.pop() : null;
 
   each();
 

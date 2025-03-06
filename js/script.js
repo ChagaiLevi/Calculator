@@ -11,9 +11,7 @@ if (historyL === null || historyL === undefined || historyL === '[object Object]
 else {
     historyObject = JSON.parse(historyL);
 }
-if (localStorage.getItem('histroy') != null) {
-    each();
-}
+localStorage.getItem('histroy') != null ? each() : null;
 for (let i = 0; i < historyObject.length; i++) {
     checkInfor(i + 1);
 }
@@ -34,15 +32,11 @@ function each() {
         </div>
       </div>
     `;
-        if (exercise.star) {
-            onStarsMouseover('star', i);
-        }
+        exercise.star ? onStarsMouseover('star', i) : null;
     });
 }
 exerciseId.addEventListener('keypress', (event) => {
-    if (event.key === 'Enter') {
-        exerciseFunctin();
-    }
+    event.key === 'Enter' ? exerciseFunctin() : null;
 });
 function exerciseFunctin() {
     let exerciseF = exerciseId.value;
@@ -54,10 +48,8 @@ function exerciseFunctin() {
     text = `${exercise} = ${result}`;
     let day = new Date().getDate();
     let month = new Date().getMonth() + 1;
-    if (day.toString().length === 1)
-        day = `0${day}`;
-    if (month.toString().length === 1)
-        month = `0${month}`;
+    day.toString().length === 1 ? day = `0${day}` : null;
+    month.toString().length === 1 ? month = `0${month}` : null;
     historyObject.unshift({
         exercise,
         result,
@@ -67,9 +59,7 @@ function exerciseFunctin() {
             date: `${day}/${month}/${new Date().getFullYear()}`
         }
     });
-    if (historyObject.length === 7) {
-        historyObject.pop();
-    }
+    historyObject.length === 7 ? historyObject.pop() : null;
     each();
     for (let i = 0; i < historyObject.length; i++) {
         checkInfor(i + 1);
