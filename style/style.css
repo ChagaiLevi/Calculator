@@ -1,0 +1,47 @@
+@import url('historyStyle.css');
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container0 {
+  text-align: center;
+}
+
+div {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.exercise {
+  padding: 12px;
+  font-size: 1rem;
+  border: 2px solid #a4c2f4;
+  border-radius: 25px;
+  width: 300px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.exercise:focus {
+  border-color: #7fa0e0;
+  box-shadow: 0 0 10px rgba(127, 160, 224, 0.5);
+}
+
+.exercise::placeholder {
+  color: #a4c2f4;
+  opacity: 0.8;
+}
+
+.copyright {
+  font-size: 14px;
+  color: #666;
+  margin-top: 20px;
+}
