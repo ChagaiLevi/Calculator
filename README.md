@@ -6,10 +6,10 @@ You can also see the history of the exercises and mark a star.
 
 Note that I used eval() to calculate the exercises.
 
-I used the following languages
+In this project I used the following programming languages:
 
-1. HTML.
+1. html
+   
+2. css
 
-2. CSS.
-
-3. Type Script.
+3. type script
