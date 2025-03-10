@@ -6,7 +6,7 @@ You can also see the history of the exercises and mark a star.
 
 Note that I used eval() to calculate the exercises.
 
-I use the following languages
+I used the following languages
 
 1. HTML.
 
