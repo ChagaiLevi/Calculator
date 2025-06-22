@@ -113,12 +113,6 @@ ul li {
   background-color: #e0e0e0;
 }
 
-.star,
-.check {
-  cursor: pointer;
-  margin-right: 10px;
-}
-
 .content {
   flex-grow: 1;
 }
@@ -127,11 +121,3 @@ ul li {
   color: gray;
   font-size: 14px;
 }
-
-/*.check {
-  display: none;
-}*/
-
-/*.star:hover+.check {
-  display: block;
-} */

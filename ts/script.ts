@@ -15,13 +15,9 @@ else {
 
 localStorage.getItem('histroy') != null ? each() : null;
 
-for (let i = 0; i < historyObject.length; i++) {
-  checkInfor(i + 1);
-}
 
 function each(): void {
   historyObject.forEach((exercise: any, index: number) => {
-    let i = index + 1;
 
     if (index === 0) {
       histroyId.innerHTML = '';
@@ -29,17 +25,12 @@ function each(): void {
 
     histroyId.innerHTML += `
       <div class="table-row">
-        <!--onclick="click(/*);-->
-        <div class="star${i} star" onmouseover="onStarsMouseover('star', ${i})"><i class="fa-regular fa-star" style="color: #FFD43B;"></i></div>
-        <div class="check${i} check" onmouseover="onStarsMouseover('check', ${i})" onmouseleave="onStarsMouseleave('check', ${i})"> </div>
         <div class="content">
           <div class="date">${exercise.date.date}, ${exercise.date.time}</div>
           <div>${exercise.exercise} = ${exercise.result}</div>
         </div>
       </div>
     `;
-
-    exercise.star ? onStarsMouseover('star', i) : null;
   });
 }
 
@@ -68,7 +59,6 @@ function exerciseFunctin(): void {
   historyObject.unshift({
     exercise,
     result,
-    star: false,
     date: {
       time: `${new Date().getHours()}:${new Date().getMinutes()}`,
       date: `${day}/${month}/${new Date().getFullYear()}`
@@ -79,50 +69,9 @@ function exerciseFunctin(): void {
 
   each();
 
-  for (let i = 0; i < historyObject.length; i++) {
-    checkInfor(i + 1);
-  }
 
   let history = JSON.stringify(historyObject);
   localStorage.setItem('histroy', history);
 
   textId.innerHTML = text;
-}
-
-function onStarsMouseover(type: string, number: number) {
-  const starElem: HTMLElement = document.querySelector(`.star${number}`) as HTMLElement;
-  const checkElem: HTMLElement = document.querySelector(`.check${number}`) as HTMLElement;
-
-  if (type === 'star') {
-    checkElem.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i>`;
-    starElem.style.display = 'none';
-    checkElem.style.display = '';
-    historyObject[number - 1].star = true;
-    let history = JSON.stringify(historyObject);
-    localStorage.setItem('histroy', history);
-  }
-}
-
-function onStarsMouseleave(type: string, number: number) {
-  if (informer) {
-    return;
-  }
-
-  const starElem: HTMLElement = document.querySelector(`.star${number}`) as HTMLElement;
-  const checkElem: HTMLElement = document.querySelector(`.check${number}`) as HTMLElement;
-
-  historyObject[number - 1].star = false;
-  let history = JSON.stringify(historyObject);
-  localStorage.setItem('histroy', history);
-
-  if (type === 'check') {
-    checkElem.style.display = 'none';
-    starElem.style.display = '';
-  }
-}
-
-function checkInfor(number: number): void {
-  const checkElem: HTMLElement = document.querySelector(`.check${number}`) as HTMLElement;
-
-  checkElem.addEventListener('click', () => informer != true ? informer = true : informer = false);
 }
