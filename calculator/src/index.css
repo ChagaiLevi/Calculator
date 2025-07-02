@@ -1,0 +1,162 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container0 {
+  text-align: center;
+}
+
+div {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.exercise {
+  padding: 12px;
+  font-size: 1rem;
+  border: 2px solid #a4c2f4;
+  border-radius: 25px;
+  width: 300px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.exercise:focus {
+  border-color: #7fa0e0;
+  box-shadow: 0 0 10px rgba(127, 160, 224, 0.5);
+}
+
+.exercise::placeholder {
+  color: #a4c2f4;
+  opacity: 0.8;
+}
+
+.copyright {
+  font-size: 14px;
+  color: #666;
+  margin-top: 20px;
+}
+
+#historyBtn {
+  font-size: 18px;
+  padding: 12px 24px;
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+#historyBtn:hover {
+  background-color: #3700b3;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #ffffff;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
+  overflow-x: hidden;
+  transition: width 0.5s ease;
+  padding-top: 10px;
+  color: #333;
+}
+
+.sidebar a {
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #333;
+  display: block;
+  transition: background-color 0.3s ease;
+  border-bottom: 1px solid #ddd;
+}
+
+.sidebar a:hover {
+  background-color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0px;
+  left: 25px;
+  margin-right: 10px;
+  font-size: 36px;
+  color: #333;
+  cursor: pointer;
+}
+
+.sidebar h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #6200ea;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  padding: 10px 0;
+  text-align: center;
+  font-size: 18px;
+}
+
+
+.container {
+  width: 400px;
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.table-header {
+  background-color: #f5f5f5;
+  padding: 10px;
+  font-size: 18px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-row {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-row:hover {
+  background-color: #e0e0e0;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.date {
+  color: gray;
+  font-size: 14px;
+}
