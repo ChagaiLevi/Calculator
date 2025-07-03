@@ -9,6 +9,7 @@ import { evaluate } from "mathjs";
 function App() {
   const [exercise, setExercise] = useState<string>('');
   const [result, setResult] = useState<number | null>(null);
+  const [openHistroyPage, setOpenHistoryPage] = useState<boolean>(false);
 
   useEffect(() => {
     try {
@@ -21,8 +22,8 @@ function App() {
   });
   return (
     <div>
-      <HistoryBtn />
-      <HistoryPage />
+      <HistoryBtn setOpenHistoryPage={setOpenHistoryPage} />
+      <HistoryPage setOpenHistoryPage={setOpenHistoryPage} openHistroyPage={openHistroyPage} />
       <Calculator exercise={exercise} setExercise={setExercise} result={result} />
       <Copyright />
     </div>
