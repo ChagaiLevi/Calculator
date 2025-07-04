@@ -10,21 +10,23 @@ function App() {
   const [exercise, setExercise] = useState<string>('');
   const [result, setResult] = useState<number | null>(null);
   const [openHistroyPage, setOpenHistoryPage] = useState<boolean>(false);
+  const [exerciseBoolean, setExerciseBoolean] = useState<boolean>(false);
 
-  useEffect(() => {
+  const calculation: () => void = () => {
     try {
       const checkResult = evaluate(exercise);
+      setExercise(exercise.replace(/\s/g, '').replace(/([+\-*/])/g, ' $1 '));
       setResult(checkResult);
     }
     catch (error) {
       setResult(null);
     }
-  });
+  }
   return (
     <div>
       <HistoryBtn setOpenHistoryPage={setOpenHistoryPage} />
       <HistoryPage setOpenHistoryPage={setOpenHistoryPage} openHistroyPage={openHistroyPage} />
-      <Calculator exercise={exercise} setExercise={setExercise} result={result} />
+      <Calculator exercise={exercise} setExercise={setExercise} result={result} calculation={calculation} exerciseBoolean={exerciseBoolean} setExerciseBoolean={setExerciseBoolean} />
       <Copyright />
     </div>
   );

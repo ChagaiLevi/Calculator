@@ -40,10 +40,8 @@ exerciseId.addEventListener('keypress', (event) => {
 
 function exerciseFunctin(): void {
   let exerciseF: string = exerciseId.value;
-  let exercise: string = exerciseF.replace(/\s/g, '');
+  let exercise: string = exerciseF.replace(/\s/g, '').replace(/([+\-*/])/g, ' $1 ');
   let text: string;
-
-  exercise = exercise.replace(/([+\-*/])/g, ' $1 ');
   let result: number = eval(exercise);
 
   exerciseId.value = '';
