@@ -11,35 +11,11 @@ function App() {
   const [result, setResult] = useState<number | null>(null);
   const [openHistroyPage, setOpenHistoryPage] = useState<boolean>(false);
   const [exerciseBoolean, setExerciseBoolean] = useState<boolean>(false);
-  const [history, setHistory] = useState<any>([
-    {
-      data: {
-        date: '04/07/2025',
-        time: '18:22'
-      },
-      exercise: '6 + 6',
-      result: 12,
-      id: 1
-    },
-    {
-      data: {
-        date: '03/05/2024',
-        time: '14:15'
-      },
-      exercise: '3 * 3',
-      result: 9,
-      id: 2
-    },
-    {
-      data: {
-        date: '01/01/2023',
-        time: '00:00'
-      },
-      exercise: '2 * 2',
-      result: 4,
-      id: 3
-    }
-  ]);
+  const [history, setHistory] = useState<any>(localStorage.getItem('history') ? JSON.parse(localStorage.getItem('history') || '') : []);
+
+  useEffect(() => {
+    localStorage.setItem('history', JSON.stringify(history));
+  }, [history]);
 
   const calculation: () => void = () => {
     try {
