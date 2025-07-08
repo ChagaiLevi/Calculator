@@ -13,7 +13,7 @@ type HistoryListProps = {
 const HistoryList: React.FC<{ history: HistoryListProps[] }> = ({ history }) => {
   return (
     <>
-      {history.map((history) => (
+      {history.slice().reverse().map((history) => (
         <LineHistory key={history.id} history={history} />
       ))}
     </>

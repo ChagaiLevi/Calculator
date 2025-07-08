@@ -5,7 +5,6 @@ import Calculator from './Calculator';
 import Copyright from './Copyright';
 import React, { useState, useEffect } from 'react';
 import { evaluate } from "mathjs";
-import { log } from 'console';
 
 function App() {
   const [exercise, setExercise] = useState<string>('');
@@ -49,7 +48,15 @@ function App() {
       setResult(checkResult);
       let day: number | string = new Date().getDate();
       let month: number | string = new Date().getMonth() + 1;
+      let mintues: number | string = new Date().getMinutes();
+      let hours: number | string = new Date().getHours();
 
+      if (mintues.toString().length === 1) {
+        mintues = `0${mintues}`;
+      }
+      if (hours.toString().length === 1) {
+        hours = `0${hours}`;
+      }
       if (day.toString().length === 1) {
         day = `0${day}`;
       }
@@ -57,13 +64,12 @@ function App() {
         month = `0${month}`;
       }
 
-      console.log(exercise);
-
       setHistory([...history, {
-        exercise,
-        result,
-        date: {
-          time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+        exercise: exercise.replace(/\s/g, '').replace(/([+\-*/])/g, ' $1 '),
+        result: checkResult,
+        id: history.length + 1,
+        data: {
+          time: `${hours}:${mintues}`,
           date: `${new Date().getDate()}/${month}/${new Date().getFullYear()}`
         }
       }]);

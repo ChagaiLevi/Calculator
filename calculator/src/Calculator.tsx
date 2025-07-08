@@ -17,6 +17,7 @@ const Calculator: React.FC<{
         type="text"
         className="exercise"
         placeholder="Type here..."
+        value={exercise}
         maxLength={33}
         minLength={3}
         onChange={(e) => {
