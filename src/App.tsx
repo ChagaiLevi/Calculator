@@ -27,6 +27,25 @@ function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [history, setHistory] = useState<HistoryListProps[]>([]);
 
+  const checkApiAvailability = async () => {
+    try {
+      return true;
+    } catch (error: unknown) {
+      return false;
+    }
+  };
+
+  const fetchItems: () => Promise<void> = async () => {
+    try {
+      const response: AxiosResponse<HistoryListProps[]> = await axios.get(API_URL);
+      setHistory(response.data);
+    }
+    catch (err: unknown) {
+      console.error('Error in history items:', err);
+      setHistory([]);
+    }
+  };
+
   useEffect(() => {
     const delayLoad = setTimeout(() => {
       setIsLoading(false);
@@ -45,7 +64,6 @@ function App() {
     return () => clearTimeout(delayLoad);
   }, []);
 
-
   const removeHistory: (id: string) => Promise<boolean> = async (id: string) => {
     try {
       await axios.delete(`${API_URL}/${id}`);
@@ -56,26 +74,6 @@ function App() {
     }
   };
 
-
-  const checkApiAvailability = async () => {
-    try {
-      return true;
-    } catch (error: unknown) {
-      return false;
-    }
-  };
-
-  const fetchItems: () => Promise<void> = async () => {
-    try {
-      const response: AxiosResponse<HistoryListProps[]> = await axios.get(API_URL);
-      setHistory(response.data);
-    }
-    catch (err) {
-      console.error('Error history items:', err);
-      setHistory([]);
-    }
-  };
-
   const calculation: () => void = async () => {
     try {
       let exerciseText: string = exercise.replace(/\s/g, '').replace(/([+\-*/])/g, ' $1 ');
@@ -83,23 +81,17 @@ function App() {
       const checkResult = evaluate(exercise);
       setExercise(exerciseText);
       setResult(checkResult);
-      let day: number | string = new Date().getDate();
-      let month: number | string = new Date().getMonth() + 1;
-      let mintues: number | string = new Date().getMinutes();
-      let hours: number | string = new Date().getHours();
 
-      if (mintues.toString().length === 1) {
-        mintues = `0${mintues}`;
-      }
-      if (hours.toString().length === 1) {
-        hours = `0${hours}`;
-      }
-      if (day.toString().length === 1) {
-        day = `0${day}`;
-      }
-      if (month.toString().length === 1) {
-        month = `0${month}`;
-      }
+      const date: Date = new Date();
+      let day: number | string = date.getDate();
+      let month: number | string = date.getMonth() + 1;
+      let mintues: number | string = date.getMinutes();
+      let hours: number | string = date.getHours();
+
+      mintues.toString().length === 1 && (mintues = `0${mintues}`);
+      hours.toString().length === 1 && (hours = `0${hours}`);
+      day.toString().length === 1 && (day = `0${day}`);
+      month.toString().length === 1 && (month = `0${month}`);
 
       const newHistoryItem: HistoryListProps = {
         exercise: exerciseText,

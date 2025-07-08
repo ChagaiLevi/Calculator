@@ -1,3 +1,49 @@
 {
-  "history": []
+  "history": [
+    {
+      "id": "9556b2d9-52c6-4c88-b42a-2030765daee2",
+      "exercise": "4 + 4",
+      "result": 8,
+      "data": {
+        "time": "19:37",
+        "date": "20/12/2025"
+      }
+    },
+    {
+      "id": "c910df5a-fa0e-416b-ac18-6310b6b1f717",
+      "exercise": "5 + 5",
+      "result": 10,
+      "data": {
+        "time": "19:44",
+        "date": "20/12/2025"
+      }
+    },
+    {
+      "id": "e08875e6-0e44-4a53-9c17-7199e942ea07",
+      "exercise": "4 + 4",
+      "result": 8,
+      "data": {
+        "time": "19:44",
+        "date": "20/12/2025"
+      }
+    },
+    {
+      "id": "51543bae-3bd2-48b1-86f7-95103ff6ba32",
+      "exercise": "5 + 5",
+      "result": 10,
+      "data": {
+        "time": "19:44",
+        "date": "20/12/2025"
+      }
+    },
+    {
+      "id": "40d2f5ae-e094-4914-83be-66a60d1a7ef6",
+      "exercise": "55 + 5",
+      "result": 60,
+      "data": {
+        "time": "19:44",
+        "date": "20/12/2025"
+      }
+    }
+  ]
 }
