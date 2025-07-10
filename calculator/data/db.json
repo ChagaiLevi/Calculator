@@ -1,0 +1,58 @@
+{
+  "history": [
+    {
+      "id": "c02d16e4-6536-4c7c-8391-68d1780f4b48",
+      "exercise": "5 + 5",
+      "result": 10,
+      "data": {
+        "time": "15:51",
+        "date": "10/07/2025"
+      }
+    },
+    {
+      "id": "bcf28bb6-7ff9-4497-ae76-d76332905347",
+      "exercise": "4 + 4",
+      "result": 8,
+      "data": {
+        "time": "16:20",
+        "date": "10/07/2025"
+      }
+    },
+    {
+      "id": "3fc64860-c1a9-4fd1-a3bc-5b9a09b009c0",
+      "exercise": "4 + 4",
+      "result": 8,
+      "data": {
+        "time": "16:22",
+        "date": "10/07/2025"
+      }
+    },
+    {
+      "id": "ead6fd0b-25d1-4949-87b1-8bc8de52adb2",
+      "exercise": "5 + 5",
+      "result": 10,
+      "data": {
+        "time": "16:27",
+        "date": "10/07/2025"
+      }
+    },
+    {
+      "id": "05a29aeb-e55a-4202-ba74-1a33f97d41bf",
+      "exercise": "5 + 5",
+      "result": 10,
+      "data": {
+        "time": "16:28",
+        "date": "10/07/2025"
+      }
+    },
+    {
+      "id": "94957afb-6cfa-4aa4-b69e-39477b1ae843",
+      "exercise": "5 + 5",
+      "result": 10,
+      "data": {
+        "time": "16:39",
+        "date": "10/07/2025"
+      }
+    }
+  ]
+}

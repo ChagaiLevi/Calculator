@@ -15,7 +15,7 @@ const LineHistory: React.FC<{ history: HistoryListProps }> = ({ history }) => {
 
   return (
     <>
-      <div className="table-row">
+      <div className="table-row" key={history.id}>
         <div className="content">
           <div className="date">{history.data.date}, {history.data.time}</div>
           <div>{exerciseText}</div>
