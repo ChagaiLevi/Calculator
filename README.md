@@ -53,14 +53,7 @@ npm install
 
 2. Start the JSON Server (for history storage):
 
-First, create a `db.json` file at the root of your project with the following content:
-
-```json
-{
-  "history": []
-}
-```
-Then, run:
+run:
 
 ```bash
 npx json-server --watch db.json --port 3500
