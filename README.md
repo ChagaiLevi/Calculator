@@ -102,13 +102,9 @@ It is important to emphasize that copyrights are just to appear official. You ar
 
 ---
 
-## ✅ Optional
+To clone this repository, run:
 
-If you'd like, I can also:
-
-- Add screenshots
-- Write GitHub Actions for auto-tests or linting
-- Help you draft a contribution section
-
-Let me know if you'd like me to!
+```bash
+git clone https://github.com/ChagaiLevi/Calculator.git
+```
 
