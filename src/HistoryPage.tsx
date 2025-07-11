@@ -14,7 +14,9 @@ const HistoryPage: React.FC<{
         <div className="table-header">History</div>
         <div className="history">
           {isLoading ? <div className="loading">Loading...</div> : null}
-          {!isApiAvailable && history.length === 0 && !isLoading ? <div>The JSON Server is not conected</div> : null}
+          {!isApiAvailable && history.length === 0 && !isLoading ? (
+            <div>The JSON Server is not connected</div>
+          ) : null}
           <HistoryList history={history} />
         </div>
       </div>
