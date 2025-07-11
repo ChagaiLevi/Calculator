@@ -59,7 +59,7 @@ First, create a `db.json` file at the root of your project with the following co
 {
   "history": []
 }
-
+```
 Then, run:
 
 ```bash
