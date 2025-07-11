@@ -1,3 +1,23 @@
+# React Calculator with History (JSON Server Integration)
+
+This is a simple React calculator app that allows users to perform calculations, view a history of previous calculations, and delete specific entries. The app supports persistent history storage using a local JSON Server.
+
+---
+
+## ✨ Features
+
+- Basic arithmetic calculator  
+- Calculation history with timestamps  
+- History sidebar with resizable width  
+- Delete history items individually  
+- Responsive design for desktop and mobile  
+- JSON Server integration for storing and fetching history  
+- Auto-detects if JSON Server is available and falls back to local-only history if not  
+
+---
+
+## 📂 Project Structure
+
 ```
 src/
 │
@@ -12,3 +32,83 @@ src/
 ├── index.tsx            # Entry point for React app
 ├── index.css            # Global and component styling
 ```
+
+
+---
+
+## ⚙️ Requirements
+
+- Node.js and npm
+- JSON Server (`json-server` npm package)
+
+---
+
+## 🚀 Getting Started
+
+### 1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Start the JSON Server (for history storage):
+
+First, create a `db.json` file at the root of your project with the following content:
+
+```json
+{
+  "history": []
+}
+
+Then, run:
+
+```bash
+npx json-server --watch db.json --port 3500
+```
+The API will be available at:
+http://localhost:3500/history
+
+3. Start the React app:
+
+In a separate terminal window:
+
+```bash
+npm start
+```
+The app will run at:
+http://localhost:3000
+
+## 📋 Notes
+
+- If the JSON Server is not running, the app will still work, but the history will only be saved locally (in memory; no persistence after refresh).
+- The sidebar for history can be resized by dragging its right edge.
+
+---
+
+## 📌 Technologies Used
+
+- React + TypeScript
+- Axios
+- Math.js
+- UUID
+- JSON Server
+- CSS with media queries
+
+---
+
+## 📄 License
+
+&copy; All rights reserved to Chagai Levi Ltd.
+
+---
+
+## ✅ Optional
+
+If you'd like, I can also:
+
+- Add screenshots
+- Write GitHub Actions for auto-tests or linting
+- Help you draft a contribution section
+
+Let me know if you'd like me to!
+
