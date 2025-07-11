@@ -3,10 +3,20 @@ import HistoryBtn from './HistoryBtn';
 import HistoryPage from './HistoryPage';
 import Calculator from './Calculator';
 import Copyright from './Copyright';
-import React, { useState, useEffect } from 'react';
-import { composition, evaluate, re } from "mathjs";
+import { useState, useEffect } from 'react';
+import { evaluate } from "mathjs";
 import axios, { AxiosResponse } from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+
+export type HistoryListProps = {
+  data: {
+    date: string;
+    time: string;
+  },
+  exercise: string;
+  result: number;
+  id: string;
+}
 
 function App() {
   const API_URL: string = 'http://localhost:3500/history';
@@ -16,7 +26,7 @@ function App() {
   const [exerciseBoolean, setExerciseBoolean] = useState<boolean>(false);
   const [isApiAvailable, setIsApiAvailable] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [history, setHistory] = useState<any>([]);
+  const [history, setHistory] = useState<HistoryListProps[]>([]);
 
   useEffect(() => {
     const delayLoad = setTimeout(() => {
@@ -37,10 +47,10 @@ function App() {
   }, []);
 
 
-  const removeHistory: (id: number) => Promise<boolean> = async (id: number) => {
+  const removeHistory: (id: string) => Promise<boolean> = async (id: string) => {
     try {
       await axios.delete(`${API_URL}/${id}`);
-      setHistory(history.filter((item: any) => item.id !== id));
+      setHistory(history.filter((item: HistoryListProps) => item.id !== id));
       return true;
     } catch {
       return false;
@@ -50,16 +60,16 @@ function App() {
 
   const checkApiAvailability = async () => {
     try {
-      let response: any = await axios.head(API_URL);
+      let response: HistoryListProps[] = await axios.head(API_URL);
       return true;
-    } catch (error: any) {
+    } catch (error: unknown) {
       return false;
     }
   };
 
-  const fetchItems: any = async () => {
+  const fetchItems: () => Promise<void> = async () => {
     try {
-      const response: AxiosResponse<any> = await axios.get(API_URL);
+      const response: AxiosResponse<HistoryListProps[]> = await axios.get(API_URL);
       setHistory(response.data);
     }
     catch (err) {
@@ -91,7 +101,7 @@ function App() {
         month = `0${month}`;
       }
 
-      const newHistoryItem: any = {
+      const newHistoryItem: HistoryListProps = {
         exercise: exercise.replace(/\s/g, '').replace(/([+\-*/])/g, ' $1 '),
         result: checkResult,
         id: uuidv4(),
@@ -105,7 +115,7 @@ function App() {
         setHistory([...history, newHistoryItem]);
       }
       else {
-        let response: AxiosResponse<any> = await axios.post(API_URL, newHistoryItem);
+        let response: AxiosResponse<HistoryListProps> = await axios.post(API_URL, newHistoryItem);
         setHistory([...history, response.data]);
       }
     }

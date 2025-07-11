@@ -1,18 +1,19 @@
 import HistoryList from "./HistoryList"
+import { HistoryListProps } from "./App"
 
 const HistoryPage: React.FC<{
-  history: any,
+  history: HistoryListProps[],
   setOpenHistoryPage: React.Dispatch<React.SetStateAction<boolean>>,
   openHistroyPage: boolean,
   isLoading: boolean,
   isApiAvailable: boolean,
-  removeHistory: (id: number) => Promise<boolean>
+  removeHistory: (id: string) => Promise<boolean>
 }> = ({ history, setOpenHistoryPage, openHistroyPage, isLoading, isApiAvailable, removeHistory }) => {
   let isResizing: boolean = false;
 
-  const sidebar: any = document.getElementById("sidebar");
+  const sidebar: HTMLDivElement = document.getElementById("sidebar") as HTMLDivElement;
 
-  function resize(e: any) {
+  function resize(e: MouseEvent) {
     if (!isResizing) return;
     const maxWidth = window.innerWidth * 0.75;
     const minWidth = 280;
@@ -32,7 +33,7 @@ const HistoryPage: React.FC<{
   return (
     <div id="sidebar" className="sidebar" style={openHistroyPage ? { width: '300px', left: '0' } : { width: '0px', left: '-300px' }}>
       <span className="closebtn" id="closeBtn" onClick={() => setOpenHistoryPage(false)} >&times;</span>
-      <div className="resize-handle" onMouseDown={(e: any) => {
+      <div className="resize-handle" onMouseDown={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         e.preventDefault();
         isResizing = true;
         document.addEventListener("mousemove", resize);

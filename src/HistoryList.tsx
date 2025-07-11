@@ -1,20 +1,11 @@
 import LineHistory from "./LineHistory"
+import { HistoryListProps } from "./App"
 
-type HistoryListProps = {
-  data: {
-    date: string;
-    time: string;
-  },
-  exercise: string;
-  result: number;
-  id: number;
-}
-
-const HistoryList: React.FC<{ history: HistoryListProps[], removeHistory: (id: number) => Promise<boolean> }> = ({ history, removeHistory }) => {
+const HistoryList: React.FC<{ history: HistoryListProps[], removeHistory: (id: string) => Promise<boolean> }> = ({ history, removeHistory }) => {
   return (
     <>
-      {history.slice().reverse().map((history) => (
-        <LineHistory key={history.id} history={history} removeHistory={removeHistory} />
+      {history.slice().reverse().map((historyItem: HistoryListProps) => (
+        <LineHistory key={historyItem.id} history={historyItem} removeHistory={removeHistory} />
       ))}
     </>
   )
