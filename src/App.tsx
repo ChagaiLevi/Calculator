@@ -8,8 +8,6 @@ import { composition, evaluate, re } from "mathjs";
 import axios, { AxiosResponse } from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-//npx json-server -p 3500 -w data/db.json 
-
 function App() {
   const API_URL: string = 'http://localhost:3500/history';
   const [exercise, setExercise] = useState<string>('');
@@ -19,37 +17,32 @@ function App() {
   const [isApiAvailable, setIsApiAvailable] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [history, setHistory] = useState<any>([]);
-  //const [table, setTable] = useState([]);
 
   useEffect(() => {
-    // עיכוב של 3 שניות לפני בדיקת ה-API וטעינת ההיסטוריה
     const delayLoad = setTimeout(() => {
       setIsLoading(false);
 
       checkApiAvailability().then((isAvailable) => {
         setIsApiAvailable(isAvailable);
         if (isAvailable) {
-          fetchItems(); // טען היסטוריה מה-API
+          fetchItems();
         }
         else {
           setIsApiAvailable(false);
         }
       });
-    }, 3000); // עיכוב של 3 שניות
+    }, 3000);
 
-    // ניקוי ה-timeout אם הקומפוננטה מפורקת
     return () => clearTimeout(delayLoad);
   }, []);
 
 
   const removeHistory: (id: number) => Promise<boolean> = async (id: number) => {
     try {
-      await axios.delete(`${API_URL}/${id}`); // שליחת בקשת DELETE לפריט הספציפי
-      // עדכון המצב: מסנן את הפריט שנמחק
+      await axios.delete(`${API_URL}/${id}`);
       setHistory(history.filter((item: any) => item.id !== id));
       return true;
     } catch {
-      // מתעלם מהשגיאה ומחזיר false
       return false;
     }
   };
@@ -58,7 +51,6 @@ function App() {
   const checkApiAvailability = async () => {
     try {
       let response: any = await axios.head(API_URL);
-      //return response.status >= 200 && response.status < 300;
       return true;
     } catch (error: any) {
       return false;
@@ -108,8 +100,6 @@ function App() {
           date: `${new Date().getDate()}/${month}/${new Date().getFullYear()}`
         }
       }
-
-
 
       if (!isApiAvailable) {
         setHistory([...history, newHistoryItem]);

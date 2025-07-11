@@ -11,23 +11,16 @@ const HistoryPage: React.FC<{
   let isResizing: boolean = false;
 
   const sidebar: any = document.getElementById("sidebar");
-  //const resizeHandle: any = document.querySelector(".resize-handle");
-  /*resizeHandle.addEventListener("mousedown", (e: any) => {
-    e.preventDefault(); // Prevent text selection during resizing
-    isResizing = true;
-    document.addEventListener("mousemove", resize);
-    document.addEventListener("mouseup", stopResize);
-  });*/
 
   function resize(e: any) {
     if (!isResizing) return;
-    const maxWidth = window.innerWidth * 0.75; // 75% of viewport width
-    const minWidth = 280; // Increased to accommodate spacing
-    let newWidth = e.clientX; // Use mouse X position for width
+    const maxWidth = window.innerWidth * 0.75;
+    const minWidth = 280;
+    let newWidth = e.clientX;
     if (newWidth < minWidth) newWidth = minWidth;
     if (newWidth > maxWidth) newWidth = maxWidth;
     sidebar.style.width = `${newWidth}px`;
-    sidebar.style.left = "0"; // Ensure sidebar stays visible
+    sidebar.style.left = "0";
   }
 
   function stopResize() {
@@ -40,7 +33,7 @@ const HistoryPage: React.FC<{
     <div id="sidebar" className="sidebar" style={openHistroyPage ? { width: '300px', left: '0' } : { width: '0px', left: '-300px' }}>
       <span className="closebtn" id="closeBtn" onClick={() => setOpenHistoryPage(false)} >&times;</span>
       <div className="resize-handle" onMouseDown={(e: any) => {
-        e.preventDefault(); // Prevent text selection during resizing
+        e.preventDefault();
         isResizing = true;
         document.addEventListener("mousemove", resize);
         document.addEventListener("mouseup", stopResize);
