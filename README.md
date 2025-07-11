@@ -98,7 +98,7 @@ http://localhost:3000
 
 ## 📄 License
 
-&copy; All rights reserved to Chagai Levi Ltd.
+It is important to emphasize that copyrights are just to appear official. You are allowed to do whatever you want with the files.
 
 ---
 
