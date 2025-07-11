@@ -11,14 +11,14 @@ const Calculator: React.FC<{
 
 
   return (
-    <div className="mainContainer">
+    <div className="containerCopyright">
       <div>Please enter an exercise and then press enter:</div>
       <input
         type="text"
         className="exercise"
         placeholder="Type here..."
         value={exercise}
-        maxLength={33}
+        maxLength={46}
         minLength={3}
         onChange={(e) => {
           setExercise(e.target.value);
@@ -32,6 +32,7 @@ const Calculator: React.FC<{
         }}
       />
       <p className="text">{result && exerciseBoolean && `${exercise} = ${result}`}</p>
+
     </div>
   )
 }
