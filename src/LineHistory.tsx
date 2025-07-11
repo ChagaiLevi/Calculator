@@ -8,7 +8,7 @@ type HistoryListProps = {
   id: number;
 }
 
-const LineHistory: React.FC<{ history: HistoryListProps }> = ({ history }) => {
+const LineHistory: React.FC<{ history: HistoryListProps, removeHistory: (id: number) => Promise<boolean> }> = ({ history, removeHistory }) => {
   let exerciseText: string = `${history.exercise} = ${history.result}`;
 
   if (exerciseText.length > 107) exerciseText = `${exerciseText.slice(0, 104)}...`;
@@ -21,7 +21,7 @@ const LineHistory: React.FC<{ history: HistoryListProps }> = ({ history }) => {
           <div className="date">{history.data.date}, {history.data.time}</div>
           <div className="exerciseText">{exerciseText}</div>
         </div>
-        <button className="delete-btn">Delete</button>
+        <button className="delete-btn" onClick={() => removeHistory(history.id)}>Delete</button>
       </div>
     </>
   )

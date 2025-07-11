@@ -10,11 +10,11 @@ type HistoryListProps = {
   id: number;
 }
 
-const HistoryList: React.FC<{ history: HistoryListProps[] }> = ({ history }) => {
+const HistoryList: React.FC<{ history: HistoryListProps[], removeHistory: (id: number) => Promise<boolean> }> = ({ history, removeHistory }) => {
   return (
     <>
       {history.slice().reverse().map((history) => (
-        <LineHistory key={history.id} history={history} />
+        <LineHistory key={history.id} history={history} removeHistory={removeHistory} />
       ))}
     </>
   )

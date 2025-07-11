@@ -5,8 +5,9 @@ const HistoryPage: React.FC<{
   setOpenHistoryPage: React.Dispatch<React.SetStateAction<boolean>>,
   openHistroyPage: boolean,
   isLoading: boolean,
-  isApiAvailable: boolean
-}> = ({ history, setOpenHistoryPage, openHistroyPage, isLoading, isApiAvailable }) => {
+  isApiAvailable: boolean,
+  removeHistory: (id: number) => Promise<boolean>
+}> = ({ history, setOpenHistoryPage, openHistroyPage, isLoading, isApiAvailable, removeHistory }) => {
   let isResizing: boolean = false;
 
   const sidebar: any = document.getElementById("sidebar");
@@ -47,11 +48,11 @@ const HistoryPage: React.FC<{
       <div className="container">
         <div className="table-header">History</div>
         <div className="history">
-          {isLoading ? <div className="loading">Loading...</div> : null}
-          {!isApiAvailable && !isLoading ? (
-            <div>The JSON Server is not connected</div>
-          ) : null}
-          <HistoryList history={history} />
+          {isLoading ? <div className="errors">Loading...</div> : null}
+          {!isApiAvailable && !isLoading ? <div className="errors">The JSON Server is not connected</div> : null}
+          {isApiAvailable && history.length === 0 && !isLoading ? <div className="errors">No history available</div> : null}
+
+          <HistoryList history={history} removeHistory={removeHistory} />
         </div>
       </div>
     </div>

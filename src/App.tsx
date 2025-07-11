@@ -19,6 +19,7 @@ function App() {
   const [isApiAvailable, setIsApiAvailable] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [history, setHistory] = useState<any>([]);
+  //const [table, setTable] = useState([]);
 
   useEffect(() => {
     // עיכוב של 3 שניות לפני בדיקת ה-API וטעינת ההיסטוריה
@@ -40,6 +41,18 @@ function App() {
     return () => clearTimeout(delayLoad);
   }, []);
 
+
+  const removeHistory: (id: number) => Promise<boolean> = async (id: number) => {
+    try {
+      await axios.delete(`${API_URL}/${id}`); // שליחת בקשת DELETE לפריט הספציפי
+      // עדכון המצב: מסנן את הפריט שנמחק
+      setHistory(history.filter((item: any) => item.id !== id));
+      return true;
+    } catch {
+      // מתעלם מהשגיאה ומחזיר false
+      return false;
+    }
+  };
 
 
   const checkApiAvailability = async () => {
@@ -113,7 +126,7 @@ function App() {
   return (
     <div>
       <HistoryBtn setOpenHistoryPage={setOpenHistoryPage} />
-      <HistoryPage history={history} setOpenHistoryPage={setOpenHistoryPage} openHistroyPage={openHistroyPage} isLoading={isLoading} isApiAvailable={isApiAvailable} />
+      <HistoryPage history={history} setOpenHistoryPage={setOpenHistoryPage} openHistroyPage={openHistroyPage} isLoading={isLoading} isApiAvailable={isApiAvailable} removeHistory={removeHistory} />
       <Calculator exercise={exercise} setExercise={setExercise} result={result} calculation={calculation} exerciseBoolean={exerciseBoolean} setExerciseBoolean={setExerciseBoolean} />
       <Copyright />
     </div>
