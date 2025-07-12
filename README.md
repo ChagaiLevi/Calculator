@@ -39,7 +39,10 @@ src/
 ## ⚙️ Requirements
 
 - Node.js and npm
-- JSON Server (`json-server` npm package)
+- JSON Server
+- Mathjs
+- Uuid
+- Axios
 
 ---
 
@@ -49,21 +52,18 @@ src/
 
 ```bash
 npm install
+npm install json-server
+npm install mathjs
+npm install uuid
+npm install axios
 ```
 
 2. Start the JSON Server (for history storage):
 
-First, create a `db.json` file at the root of your project with the following content:
-
-```json
-{
-  "history": []
-}
-```
-Then, run:
+run:
 
 ```bash
-npx json-server --watch db.json --port 3500
+npx json-server --watch data/db.json --port 3500
 ```
 The API will be available at:
 http://localhost:3500/history
