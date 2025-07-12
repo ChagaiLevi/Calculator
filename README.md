@@ -39,7 +39,10 @@ src/
 ## ⚙️ Requirements
 
 - Node.js and npm
-- JSON Server (`json-server` npm package)
+- JSON Server
+- Mathjs
+- Uuid
+- Axios
 
 ---
 
@@ -49,6 +52,10 @@ src/
 
 ```bash
 npm install
+npm install json-server
+npm install mathjs
+npm install uuid
+npm install axios
 ```
 
 2. Start the JSON Server (for history storage):
