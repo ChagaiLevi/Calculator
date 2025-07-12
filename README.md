@@ -63,7 +63,7 @@ npm install axios
 run:
 
 ```bash
-npx json-server --watch db.json --port 3500
+npx json-server --watch data/db.json --port 3500
 ```
 The API will be available at:
 http://localhost:3500/history
