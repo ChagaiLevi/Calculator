@@ -80,8 +80,10 @@ function App() {
 
   const calculation: () => void = async () => {
     try {
+      let exerciseText: string = exercise.replace(/\s/g, '').replace(/([+\-*/])/g, ' $1 ');
+      if (history.length !== 0 && exerciseText === history[history.length - 1].exercise) return;
       const checkResult = evaluate(exercise);
-      setExercise(exercise.replace(/\s/g, '').replace(/([+\-*/])/g, ' $1 '));
+      setExercise(exerciseText);
       setResult(checkResult);
       let day: number | string = new Date().getDate();
       let month: number | string = new Date().getMonth() + 1;
@@ -102,7 +104,7 @@ function App() {
       }
 
       const newHistoryItem: HistoryListProps = {
-        exercise: exercise.replace(/\s/g, '').replace(/([+\-*/])/g, ' $1 '),
+        exercise: exerciseText,
         result: checkResult,
         id: uuidv4(),
         data: {
