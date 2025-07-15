@@ -73,7 +73,7 @@ http://localhost:3500/history
 In a separate terminal window:
 
 ```bash
-npm start
+npm run dev
 ```
 The app will run at:
 http://localhost:3000
