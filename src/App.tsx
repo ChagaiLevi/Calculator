@@ -5,7 +5,7 @@ import Calculator from './Calculator';
 import Copyright from './Copyright';
 import { useState, useEffect } from 'react';
 import { evaluate } from "mathjs";
-import axios, { AxiosResponse } from 'axios';
+import axios, { type AxiosResponse } from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
 export type HistoryListProps = {
@@ -23,7 +23,6 @@ function App() {
   const [exercise, setExercise] = useState<string>('');
   const [result, setResult] = useState<number | null>(null);
   const [openHistroyPage, setOpenHistoryPage] = useState<boolean>(false);
-  const [exerciseBoolean, setExerciseBoolean] = useState<boolean>(false);
   const [isApiAvailable, setIsApiAvailable] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [history, setHistory] = useState<HistoryListProps[]>([]);
@@ -41,7 +40,7 @@ function App() {
           setIsApiAvailable(false);
         }
       });
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(delayLoad);
   }, []);
@@ -60,7 +59,6 @@ function App() {
 
   const checkApiAvailability = async () => {
     try {
-      let response: HistoryListProps[] = await axios.head(API_URL);
       return true;
     } catch (error: unknown) {
       return false;
@@ -129,7 +127,7 @@ function App() {
     <div>
       <HistoryBtn setOpenHistoryPage={setOpenHistoryPage} />
       <HistoryPage history={history} setOpenHistoryPage={setOpenHistoryPage} openHistroyPage={openHistroyPage} isLoading={isLoading} isApiAvailable={isApiAvailable} removeHistory={removeHistory} />
-      <Calculator exercise={exercise} setExercise={setExercise} result={result} calculation={calculation} exerciseBoolean={exerciseBoolean} setExerciseBoolean={setExerciseBoolean} />
+      <Calculator exercise={exercise} setExercise={setExercise} result={result} calculation={calculation} />
       <Copyright />
     </div>
   );

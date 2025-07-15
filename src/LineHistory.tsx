@@ -1,4 +1,4 @@
-import { HistoryListProps } from "./App";
+import { type HistoryListProps } from "./App";
 
 const LineHistory: React.FC<{ history: HistoryListProps, removeHistory: (id: string) => Promise<boolean> }> = ({ history, removeHistory }) => {
   let exerciseText: string = `${history.exercise} = ${history.result}`;

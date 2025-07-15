@@ -4,11 +4,10 @@ const Calculator: React.FC<{
   exercise: string,
   setExercise: React.Dispatch<React.SetStateAction<string>>,
   result: number | null,
-  calculation: () => void,
-  exerciseBoolean: boolean,
-  setExerciseBoolean: React.Dispatch<React.SetStateAction<boolean>>
-}> = ({ exercise, setExercise, result, calculation, exerciseBoolean, setExerciseBoolean }) => {
+  calculation: () => void
+}> = ({ exercise, setExercise, result, calculation }) => {
 
+  const [exerciseBoolean, setExerciseBoolean] = useState<boolean>(false);
 
   return (
     <div className="containerCopyright">

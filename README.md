@@ -1,110 +1,69 @@
-# React Calculator with History (JSON Server Integration)
+# React + TypeScript + Vite
 
-This is a simple React calculator app that allows users to perform calculations, view a history of previous calculations, and delete specific entries. The app supports persistent history storage using a local JSON Server.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## ✨ Features
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- Basic arithmetic calculator  
-- Calculation history with timestamps  
-- History sidebar with resizable width  
-- Delete history items individually  
-- Responsive design for desktop and mobile  
-- JSON Server integration for storing and fetching history  
-- Auto-detects if JSON Server is available and falls back to local-only history if not  
+## Expanding the ESLint configuration
 
----
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-## 📂 Project Structure
+```js
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-```
-src/
-│
-├── App.tsx              # Main component managing calculator and history
-├── Calculator.tsx       # Calculator input and display component
-├── HistoryBtn.tsx       # Button to open the history sidebar
-├── HistoryPage.tsx      # Sidebar component for showing the history
-├── HistoryList.tsx      # List component for mapping history items
-├── LineHistory.tsx      # Individual history item component
-├── Copyright.tsx        # Footer with copyright
-│
-├── index.tsx            # Entry point for React app
-├── index.css            # Global and component styling
-```
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
 
-
----
-
-## ⚙️ Requirements
-
-- Node.js and npm
-- JSON Server
-- Mathjs
-- Uuid
-- Axios
-
----
-
-## 🚀 Getting Started
-
-### 1. Install dependencies:
-
-```bash
-npm install
-npm install json-server
-npm install mathjs
-npm install uuid
-npm install axios
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-2. Start the JSON Server (for history storage):
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-run:
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-```bash
-npx json-server --watch data/db.json --port 3500
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-The API will be available at:
-http://localhost:3500/history
-
-3. Start the React app:
-
-In a separate terminal window:
-
-```bash
-npm start
-```
-The app will run at:
-http://localhost:3000
-
-## 📋 Notes
-
-- If the JSON Server is not running, the app will still work, but the history will only be saved locally (in memory; no persistence after refresh).
-- The sidebar for history can be resized by dragging its right edge.
-
----
-
-## 📌 Technologies Used
-
-- React + TypeScript
-- Axios
-- Math.js
-- UUID
-- JSON Server
-- CSS with media queries
-
----
-
-## 📄 License
-
-It is important to emphasize that copyrights are just to appear official. You are allowed to do whatever you want with the files.
-
----
-
-To clone this repository, run:
-
-```bash
-git clone https://github.com/ChagaiLevi/Calculator.git
-```
-
