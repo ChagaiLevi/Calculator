@@ -1,8 +1,8 @@
 //import React from 'react';
-import HistoryBtn from './HistoryBtn';
-import HistoryPage from './HistoryPage';
-import Calculator from './Calculator';
-import Copyright from './Copyright';
+import HistoryBtn from './Components/HistoryBtn';
+import HistoryPage from './Components/HistoryPage';
+import Calculator from './Components/Calculator';
+import Copyright from './Components//Copyright';
 import { useState, useEffect } from 'react';
 import { evaluate } from "mathjs";
 import axios, { type AxiosResponse } from 'axios';

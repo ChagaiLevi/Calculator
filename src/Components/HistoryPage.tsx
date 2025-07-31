@@ -1,5 +1,5 @@
 import HistoryList from "./HistoryList"
-import { type HistoryListProps } from "./App";
+import { type HistoryListProps } from "../App";
 
 const HistoryPage: React.FC<{
   history: HistoryListProps[],
