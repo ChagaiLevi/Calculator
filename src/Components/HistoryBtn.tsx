@@ -1,4 +1,8 @@
-const HistoryBtn: React.FC<{ setOpenHistoryPage: React.Dispatch<React.SetStateAction<boolean>> }> = ({ setOpenHistoryPage }) => {
+type historyBtnProps = {
+  setOpenHistoryPage: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const HistoryBtn: React.FC<historyBtnProps> = ({ setOpenHistoryPage }) => {
   return (
     <button id="historyBtn" title="history" onClick={() => setOpenHistoryPage(true)}>History</button>
   )

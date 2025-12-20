@@ -87,6 +87,7 @@ function App() {
       let month: number | string = date.getMonth() + 1;
       let mintues: number | string = date.getMinutes();
       let hours: number | string = date.getHours();
+      const year: number = date.getFullYear();
 
       mintues.toString().length === 1 && (mintues = `0${mintues}`);
       hours.toString().length === 1 && (hours = `0${hours}`);
@@ -99,7 +100,7 @@ function App() {
         id: uuidv4(),
         data: {
           time: `${hours}:${mintues}`,
-          date: `${new Date().getDate()}/${month}/${new Date().getFullYear()}`
+          date: `${day}/${month}/${year}`
         }
       }
 
@@ -111,7 +112,7 @@ function App() {
         setHistory([...history, response.data]);
       }
     }
-    catch (error) {
+    catch (error: unknown) {
       setResult(null);
     }
   }

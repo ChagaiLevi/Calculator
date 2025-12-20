@@ -1,10 +1,14 @@
 import { type HistoryListProps } from "../App";
 
-const LineHistory: React.FC<{ history: HistoryListProps, removeHistory: (id: string) => Promise<boolean> }> = ({ history, removeHistory }) => {
+type LineHistoryProps = {
+  history: HistoryListProps,
+  removeHistory: (id: string) => Promise<boolean>
+}
+
+const LineHistory: React.FC<LineHistoryProps> = ({ history, removeHistory }) => {
   let exerciseText: string = `${history.exercise} = ${history.result}`;
 
-  if (exerciseText.length > 107) exerciseText = `${exerciseText.slice(0, 104)}...`;
-
+  exerciseText.length > 107 && (exerciseText = `${exerciseText.slice(0, 104)}...`);
 
   return (
     <>

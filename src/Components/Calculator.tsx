@@ -1,18 +1,13 @@
 import { useState } from "react"
 
-// ! If i calculated something, and then change the input, the result will still show until i press enter again.
-// ! This is because the result state only updates on enter key press.
-// ! To fix this, we can create a function to check if the user wants to continue with the current input.
-// ! If they do, we show the result, otherwise we hide it until they press enter again.
-// ! If the user presses any number again that's says the user wants to start a new calculation, so we hide the result until they press enter again.
-// ! WRITE THIS IN NOTION!!!
-
-const Calculator: React.FC<{
+type CalculatorProps = {
   exercise: string,
   setExercise: React.Dispatch<React.SetStateAction<string>>,
   result: number | null,
   calculation: () => void
-}> = ({ exercise, setExercise, result, calculation }) => {
+}
+
+const Calculator: React.FC<CalculatorProps> = ({ exercise, setExercise, result, calculation }) => {
 
   const [exerciseBoolean, setExerciseBoolean] = useState<boolean>(false);
 

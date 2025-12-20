@@ -1,18 +1,21 @@
 import HistoryList from "./HistoryList"
 import { type HistoryListProps } from "../App";
 
-const HistoryPage: React.FC<{
+type historyPageProps = {
   history: HistoryListProps[],
   setOpenHistoryPage: React.Dispatch<React.SetStateAction<boolean>>,
   openHistroyPage: boolean,
   isLoading: boolean,
   isApiAvailable: boolean,
   removeHistory: (id: string) => Promise<boolean>
-}> = ({ history, setOpenHistoryPage, openHistroyPage, isLoading, isApiAvailable, removeHistory }) => {
+}
+
+const HistoryPage: React.FC<historyPageProps> = ({ history, setOpenHistoryPage, openHistroyPage, isLoading, isApiAvailable, removeHistory }) => {
   let isResizing: boolean = false;
 
   const sidebar: HTMLDivElement = document.getElementById("sidebar") as HTMLDivElement;
 
+  // for resizing the sidebar
   function resize(e: MouseEvent) {
     if (!isResizing) return;
     const maxWidth = window.innerWidth * 0.75;
