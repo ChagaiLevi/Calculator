@@ -2,7 +2,7 @@ import { type HistoryListProps } from "../App";
 
 type LineHistoryProps = {
   history: HistoryListProps,
-  removeHistory: (id: string) => Promise<boolean>
+  removeHistory: (id: string) => boolean
 }
 
 const LineHistory: React.FC<LineHistoryProps> = ({ history, removeHistory }) => {

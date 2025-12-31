@@ -5,17 +5,13 @@ type historyPageProps = {
   history: HistoryListProps[],
   setOpenHistoryPage: React.Dispatch<React.SetStateAction<boolean>>,
   openHistroyPage: boolean,
-  isLoading: boolean,
-  isApiAvailable: boolean,
-  removeHistory: (id: string) => Promise<boolean>
+  removeHistory: (id: string) => boolean
 }
 
-const HistoryPage: React.FC<historyPageProps> = ({ history, setOpenHistoryPage, openHistroyPage, isLoading, isApiAvailable, removeHistory }) => {
+const HistoryPage: React.FC<historyPageProps> = ({ history, setOpenHistoryPage, openHistroyPage, removeHistory }) => {
   let isResizing: boolean = false;
 
   const sidebar: HTMLDivElement = document.getElementById("sidebar") as HTMLDivElement;
-
-  // for resizing the sidebar
   function resize(e: MouseEvent) {
     if (!isResizing) return;
     const maxWidth = window.innerWidth * 0.75;
@@ -45,10 +41,6 @@ const HistoryPage: React.FC<historyPageProps> = ({ history, setOpenHistoryPage, 
       <div className="container">
         <div className="table-header">History</div>
         <div className="history">
-          {isLoading ? <div className="errors">Loading...</div> : null}
-          {!isApiAvailable && !isLoading ? <div className="errors">The JSON Server is not connected</div> : null}
-          {isApiAvailable && history.length === 0 && !isLoading ? <div className="errors">No history available</div> : null}
-
           <HistoryList history={history} removeHistory={removeHistory} />
         </div>
       </div>

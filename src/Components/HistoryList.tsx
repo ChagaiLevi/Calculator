@@ -3,7 +3,7 @@ import { type HistoryListProps } from "../App";
 
 type HistoryListComponentProps = {
   history: HistoryListProps[],
-  removeHistory: (id: string) => Promise<boolean>
+  removeHistory: (id: string) => boolean
 }
 
 const HistoryList: React.FC<HistoryListComponentProps> = ({ history, removeHistory }) => {

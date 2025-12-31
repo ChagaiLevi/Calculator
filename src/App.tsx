@@ -1,11 +1,9 @@
-//import React from 'react';
 import HistoryBtn from './Components/HistoryBtn';
 import HistoryPage from './Components/HistoryPage';
 import Calculator from './Components/Calculator';
 import Copyright from './Components//Copyright';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { evaluate } from "mathjs";
-import axios, { type AxiosResponse } from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
 export type HistoryListProps = {
@@ -19,54 +17,18 @@ export type HistoryListProps = {
 }
 
 function App() {
-  const API_URL: string = 'http://localhost:3500/history';
   const [exercise, setExercise] = useState<string>('');
   const [result, setResult] = useState<number | null>(null);
   const [openHistroyPage, setOpenHistoryPage] = useState<boolean>(false);
-  const [isApiAvailable, setIsApiAvailable] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [history, setHistory] = useState<HistoryListProps[]>([]);
-
-  const checkApiAvailability = async () => {
-    try {
-      return true;
-    } catch (error: unknown) {
-      return false;
-    }
-  };
-
-  const fetchItems: () => Promise<void> = async () => {
-    try {
-      const response: AxiosResponse<HistoryListProps[]> = await axios.get(API_URL);
-      setHistory(response.data);
-    }
-    catch (err: unknown) {
-      console.error('Error in history items:', err);
-      setHistory([]);
-    }
-  };
+  const [history, setHistory] = useState<HistoryListProps[]>(localStorage.getItem('history') ? JSON.parse(localStorage.getItem('history') as string) : []);
 
   useEffect(() => {
-    const delayLoad = setTimeout(() => {
-      setIsLoading(false);
+    localStorage.setItem('history', JSON.stringify(history));
+  }, [history]);
 
-      checkApiAvailability().then((isAvailable) => {
-        setIsApiAvailable(isAvailable);
-        if (isAvailable) {
-          fetchItems();
-        }
-        else {
-          setIsApiAvailable(false);
-        }
-      });
-    }, 2000);
-
-    return () => clearTimeout(delayLoad);
-  }, []);
-
-  const removeHistory: (id: string) => Promise<boolean> = async (id: string) => {
+  const removeHistory: (id: string) => boolean = (id: string) => {
     try {
-      await axios.delete(`${API_URL}/${id}`);
+      history.find((item: HistoryListProps) => item.id === id);
       setHistory(history.filter((item: HistoryListProps) => item.id !== id));
       return true;
     } catch {
@@ -104,13 +66,7 @@ function App() {
         }
       }
 
-      if (!isApiAvailable) {
-        setHistory([...history, newHistoryItem]);
-      }
-      else {
-        let response: AxiosResponse<HistoryListProps> = await axios.post(API_URL, newHistoryItem);
-        setHistory([...history, response.data]);
-      }
+      setHistory([...history, newHistoryItem]);
     }
     catch (error: unknown) {
       setResult(null);
@@ -119,7 +75,7 @@ function App() {
   return (
     <div>
       <HistoryBtn setOpenHistoryPage={setOpenHistoryPage} />
-      <HistoryPage history={history} setOpenHistoryPage={setOpenHistoryPage} openHistroyPage={openHistroyPage} isLoading={isLoading} isApiAvailable={isApiAvailable} removeHistory={removeHistory} />
+      <HistoryPage history={history} setOpenHistoryPage={setOpenHistoryPage} openHistroyPage={openHistroyPage} removeHistory={removeHistory} />
       <Calculator exercise={exercise} setExercise={setExercise} result={result} calculation={calculation} />
       <Copyright />
     </div>
