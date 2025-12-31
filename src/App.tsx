@@ -1,4 +1,3 @@
-//import React from 'react';
 import HistoryBtn from './Components/HistoryBtn';
 import HistoryPage from './Components/HistoryPage';
 import Calculator from './Components/Calculator';
@@ -116,6 +115,7 @@ function App() {
       setResult(null);
     }
   }
+
   return (
     <div>
       <HistoryBtn setOpenHistoryPage={setOpenHistoryPage} />

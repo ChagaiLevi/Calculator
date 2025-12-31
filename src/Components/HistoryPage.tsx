@@ -15,7 +15,6 @@ const HistoryPage: React.FC<historyPageProps> = ({ history, setOpenHistoryPage, 
 
   const sidebar: HTMLDivElement = document.getElementById("sidebar") as HTMLDivElement;
 
-  // for resizing the sidebar
   function resize(e: MouseEvent) {
     if (!isResizing) return;
     const maxWidth = window.innerWidth * 0.75;
