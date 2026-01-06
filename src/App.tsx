@@ -36,10 +36,9 @@ function App() {
     }
   };
 
-  const calculation: () => void = async () => {
+  const calculation: () => void = () => {
     try {
       let exerciseText: string = exercise.replace(/\s/g, '').replace(/([+\-*/])/g, ' $1 ');
-      if (history.length !== 0 && exerciseText === history[history.length - 1].exercise) return;
       const checkResult = evaluate(exercise);
       setExercise(exerciseText);
       setResult(checkResult);
