@@ -11,7 +11,7 @@ const Calculator: React.FC<CalculatorProps> = ({ exercise, setExercise, result, 
   const [showResult, setShowResult] = useState<boolean>(false);
   const [numberSymbol, setNumberSymbol] = useState<boolean>(false);
 
-  const allowedRegex = /[^0-9+\-*/%(). ]/g;
+  const allowedRegex = /[^0-9+\-*/%()., ]/g;
 
   const mechanism: (value: string) => boolean = (value) => {
     try {

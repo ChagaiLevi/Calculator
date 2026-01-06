@@ -38,10 +38,17 @@ function App() {
 
   const calculation: () => void = () => {
     try {
-      let exerciseText: string = exercise.replace(/\s/g, '').replace(/([+\-*/])/g, ' $1 ');
+      let exerciseText: () => string = () => {
+        const spacedExpression = exercise.replace(/([+\-*/%])/g, " $1 ");
+        const formattedExpression = spacedExpression.replace(/-?\d+(\.\d+)?/g, (num) => Number(num).toLocaleString("en-US"));
+        const finalExpression = formattedExpression.replace(/\s+/g, " ").trim();
+
+        return finalExpression;
+      };
+
       const checkResult = evaluate(exercise);
       setExercise(exerciseText);
-      setResult(checkResult);
+      setResult(checkResult.toLocaleString('en-US'));
 
       const date: Date = new Date();
       let day: number | string = date.getDate();
@@ -56,8 +63,8 @@ function App() {
       month.toString().length === 1 && (month = `0${month}`);
 
       const newHistoryItem: HistoryListProps = {
-        exercise: exerciseText,
-        result: checkResult,
+        exercise: exerciseText(),
+        result: checkResult.toLocaleString('en-US'),
         id: uuidv4(),
         data: {
           time: `${hours}:${mintues}`,
