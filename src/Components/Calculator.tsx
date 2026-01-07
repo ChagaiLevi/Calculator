@@ -45,7 +45,7 @@ const Calculator: React.FC<CalculatorProps> = ({ exercise, setExercise, result, 
             setNumberSymbol(true);
 
           }
-          else if (numberSymbol && mechanism(e.key)) {
+          else if (numberSymbol && mechanism(e.key) && !e.ctrlKey && !e.metaKey && !e.altKey) {
             setExercise(e.key);
             setNumberSymbol(false);
           }

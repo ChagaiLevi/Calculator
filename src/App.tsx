@@ -21,6 +21,10 @@ function App() {
   const [result, setResult] = useState<number | null>(null);
   const [openHistroyPage, setOpenHistoryPage] = useState<boolean>(false);
   const [history, setHistory] = useState<HistoryListProps[]>(localStorage.getItem('history') ? JSON.parse(localStorage.getItem('history') as string) : []);
+  const [emptyHistory, setEmptyHistory] = useState<boolean>(false);
+
+  !history.length && !emptyHistory && setEmptyHistory(true);
+  history.length && emptyHistory && setEmptyHistory(false);
 
   useEffect(() => {
     localStorage.setItem('history', JSON.stringify(history));
@@ -81,7 +85,7 @@ function App() {
   return (
     <div>
       <HistoryBtn setOpenHistoryPage={setOpenHistoryPage} />
-      <HistoryPage history={history} setOpenHistoryPage={setOpenHistoryPage} openHistroyPage={openHistroyPage} removeHistory={removeHistory} />
+      <HistoryPage history={history} setOpenHistoryPage={setOpenHistoryPage} openHistroyPage={openHistroyPage} removeHistory={removeHistory} emptyHistory={emptyHistory} />
       <Calculator exercise={exercise} setExercise={setExercise} result={result} calculation={calculation} />
       <Copyright />
     </div>

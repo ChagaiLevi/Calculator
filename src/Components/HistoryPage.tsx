@@ -5,10 +5,11 @@ type historyPageProps = {
   history: HistoryListProps[],
   setOpenHistoryPage: React.Dispatch<React.SetStateAction<boolean>>,
   openHistroyPage: boolean,
-  removeHistory: (id: string) => boolean
+  removeHistory: (id: string) => boolean,
+  emptyHistory: boolean
 }
 
-const HistoryPage: React.FC<historyPageProps> = ({ history, setOpenHistoryPage, openHistroyPage, removeHistory }) => {
+const HistoryPage: React.FC<historyPageProps> = ({ history, setOpenHistoryPage, openHistroyPage, removeHistory, emptyHistory }) => {
   let isResizing: boolean = false;
 
   const sidebar: HTMLDivElement = document.getElementById("sidebar") as HTMLDivElement;
@@ -41,7 +42,7 @@ const HistoryPage: React.FC<historyPageProps> = ({ history, setOpenHistoryPage, 
       <div className="container">
         <div className="table-header">History</div>
         <div className="history">
-          <HistoryList history={history} removeHistory={removeHistory} />
+          <HistoryList history={history} removeHistory={removeHistory} emptyHistory={emptyHistory} />
         </div>
       </div>
     </div>
