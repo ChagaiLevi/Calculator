@@ -14,13 +14,9 @@ const Calculator: React.FC<CalculatorProps> = ({ exercise, setExercise, result, 
   const allowedRegex = /[^0-9+\-*/%()., ]/g;
 
   const mechanism: (value: string) => boolean = (value) => {
-    try {
-      value = Number(value).toString();
-      return true;
-    }
-    catch {
-      return false;
-    }
+    value = Number(value).toString();
+    if (isNaN(Number(value))) return false;
+    return true;
   };
 
   return (
@@ -42,10 +38,10 @@ const Calculator: React.FC<CalculatorProps> = ({ exercise, setExercise, result, 
           if (e.code === 'Enter' || e.code === 'NumpadEnter') {
             setShowResult(true);
             calculation();
-            setNumberSymbol(true);
-
+            result !== null && setNumberSymbol(true);
           }
-          else if (numberSymbol && mechanism(e.key) && !e.ctrlKey && !e.metaKey && !e.altKey) {
+          else if (numberSymbol && mechanism(e.key)) {
+            showResult && setShowResult(false);
             setExercise(e.key);
             setNumberSymbol(false);
           }
